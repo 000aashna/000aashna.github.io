@@ -1,22 +1,20 @@
 <html>
 <head>
-  <title>Login</title>
-  <link href="loginStyles.css" rel="stylesheet">
+  <title>Register</title>
+  <link rel="stylesheet" href="registerStyles.css">
 </head>
 <body>
-
   <center>
-    <h1>Login:</h1>
+    <h1>Register</h1>
     <p> </p>
-    <input id="loginEmail" placeholder="Email">
-    <input id="loginPassword" placeholder="Password">
-    <button id="login">Login</button>
+    <input  id="registerEmail" placeholder="Email">
+    <input id="registerPassword" placeholder="Password">
+    <button id="register">Register</button>
     <br>
     <a href="index.html"><button>Back</button></a>
   </center>
 
-  <!--Initialize Firebase-->
-
+  //Initialize Firebase
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -34,22 +32,23 @@
   <!--Switch to JavaScript-->
   <script>
     //Make Variables
-    var loginButton = document.getElementById("login");
-    var lEmail = document.getElementById("loginEmail");
-    var lPassword = document.getElementById("loginPassword");
-
+    var registerButton = document.getElementById("register");
+    var rEmail = document.getElementById("registerEmail");
+    var rPassword = document.getElementById("registerPassword");
+    //Links to main.html
+    var testB = document.getElementById("testB");
 
     //Signs out
     var signOut = document.getElementById("signOutButton");
 
-    loginButton.onclick = function() {
-      firebase.auth().signInWithEmailAndPassword(lEmail.value, lPassword.value).catch(function(error) {
+    registerButton.onclick = function(){
+      firebase.auth().createUserWithEmailAndPassword(rEmail.value, rPassword.value).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         alert(errorMessage);
-        //var e = document.querySelector('p');
-        //e.innerHTML = "User Not In System";
+        //var f = document.querySelector('p');
+        //f.innerHTML = "User Cannot Be Created";
         // ...
       });
     }
@@ -59,7 +58,7 @@
         var s = document.querySelector('h1');
         s.innerHTML = "Logged In " + user.email;
         console.log(user);
-        window.location.replace("home.html");
+        window.location.replace("main.html");
       }
     });
 
